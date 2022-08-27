@@ -17,7 +17,7 @@ app.use(
 
 // TEST ROUTE
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello World 🌏");
 });
 
 // USER ROUTES
