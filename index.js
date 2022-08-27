@@ -1,6 +1,8 @@
 const express = require("express");
 require("dotenv").config();
 const userRoutes = require("./routes/auth.routes");
+const incomesRoutes = require("./routes/incomes.routes");
+const expensesRoutes = require("./routes/expenses.routes");
 
 require("./config/db");
 
@@ -21,6 +23,12 @@ app.get("/", (req, res) => {
 
 // USER ROUTES
 app.use("/user", userRoutes);
+
+// INCOMES ROUTES
+app.use("/incomes", incomesRoutes);
+
+// EXPENSES ROUTES
+app.use("/expenses", expensesRoutes);
 
 // PORT APP
 app.listen(port, () => {

@@ -1,25 +1,28 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const UserSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: [true, "L'e-mail est requis"],
-    unique: true
+const UserSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: [true, "L'e-mail est requis"],
+      unique: true
+    },
+    password: {
+      type: String,
+      required: [true, "Le mot de passe est requis"]
+    },
+    firstname: {
+      type: String,
+      required: [true, "Le prénom est requis"]
+    },
+    lastname: {
+      type: String,
+      required: [true, "Le nom est requis"]
+    }
   },
-  password: {
-    type: String,
-    required: [true, "Le mot de passe est requis"]
-  },
-  firstname: {
-    type: String,
-    required: [true, "Le prénom est requis"]
-  },
-  lastname: {
-    type: String,
-    required: [true, "Le nom est requis"]
-  }
-});
+  { collection: "users" }
+);
 
 UserSchema.pre("save", async function(next) {
   const user = this;
@@ -29,10 +32,8 @@ UserSchema.pre("save", async function(next) {
   next();
 });
 
-UserSchema.methods.isValidPassword = async function(newPassword) {
-  const user = this;
-  const isMatch = await bcrypt.compare(newPassword, user.password);
-  return isMatch;
+UserSchema.methods.validatePassword = async function(password) {
+  return bcrypt.compare(password, this.password);
 };
 
 module.exports = mongoose.model("User", UserSchema);
