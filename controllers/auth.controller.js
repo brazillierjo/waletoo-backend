@@ -1,4 +1,5 @@
 const UserModel = require("../models/user.model");
+const bcrypt = require("bcrypt");
 
 module.exports.signUp = async (req, res) => {
   const { email, password, firstname, lastname } = req.body;
@@ -28,16 +29,19 @@ module.exports.signIn = async (req, res) => {
 
   if (!user) {
     return res.status(400).json({
-      message: "email not found."
-    });
-  }
-  if (user.password !== password) {
-    return res.status(400).json({
-      message: "wrong password."
+      message: "User not found."
     });
   }
 
-  res.status(200).json({
-    message: "User signed in."
+  const isValidPassword = await bcrypt.compare(password, user.password);
+
+  if (!isValidPassword) {
+    return res.status(400).json({
+      message: "Invalid password."
+    });
+  }
+
+  res.status(201).json({
+    message: "User logged in."
   });
 };
