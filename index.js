@@ -3,7 +3,6 @@ require("dotenv").config();
 const userRoutes = require("./routes/auth.routes");
 const incomesRoutes = require("./routes/incomes.routes");
 const expensesRoutes = require("./routes/expenses.routes");
-
 require("./config/db");
 
 const app = express();
