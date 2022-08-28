@@ -3,6 +3,7 @@ require("dotenv").config();
 const userRoutes = require("./routes/auth.routes");
 const incomesRoutes = require("./routes/incomes.routes");
 const expensesRoutes = require("./routes/expenses.routes");
+const { verifyToken } = require("./middlewares/auth.middleware");
 require("./config/db");
 
 const app = express();
@@ -24,10 +25,10 @@ app.get("/", (req, res) => {
 app.use("/user", userRoutes);
 
 // INCOMES ROUTES
-app.use("/incomes", incomesRoutes);
+app.use("/incomes", verifyToken, incomesRoutes);
 
 // EXPENSES ROUTES
-app.use("/expenses", expensesRoutes);
+app.use("/expenses", verifyToken, expensesRoutes);
 
 // PORT APP
 app.listen(port, () => {

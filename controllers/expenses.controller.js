@@ -1,11 +1,5 @@
 const ExpenseModel = require("../models/expense.model");
 
-module.exports.getExpenses = async (req, res) => {
-  const expenses = await ExpenseModel.find({ user: req.user._id });
-
-  res.status(200).json(expenses);
-};
-
 module.exports.addExpense = async (req, res) => {
   const { user, label, amount } = req.body;
   const newExpense = new ExpenseModel({

@@ -1,11 +1,5 @@
 const IncomeModel = require("../models/income.model");
 
-module.exports.getIncomes = async (req, res) => {
-  const incomes = await IncomeModel.find({ user: req.user._id });
-
-  res.status(200).json(incomes);
-};
-
 module.exports.addIncome = async (req, res) => {
   const { user, label, amount } = req.body;
   const newIncome = new IncomeModel({
