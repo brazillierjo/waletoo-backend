@@ -43,7 +43,7 @@ module.exports.signIn = async (req, res) => {
   }
 
   const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-    expiresIn: "10h"
+    expiresIn: "2h"
   });
 
   res.status(200).json({
