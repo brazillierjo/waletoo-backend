@@ -15,8 +15,8 @@ module.exports.addExpense = async (req, res) => {
   });
 };
 
-module.exports.getExpense = async (req, res) => {
-  const expense = await IncomeModel.find({user: req.params.userId});
+module.exports.getExpenses = async (req, res) => {
+  const expense = await IncomeModel.find({ user: req.params.userId });
 
   res.status(200).json(expense);
 };
