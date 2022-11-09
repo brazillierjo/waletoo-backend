@@ -4,7 +4,7 @@ const incomesController = require("../controllers/incomes.controller");
 
 // INCOMES ROUTES
 router.post("/add", incomesController.addIncome);
-router.get("/get/:id", incomesController.getIncome);
+router.get("/get/:userId", incomesController.getIncome);
 router.put("/update/:id", incomesController.updateIncome);
 router.delete("/delete/:id", incomesController.deleteIncome);
 

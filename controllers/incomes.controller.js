@@ -16,7 +16,7 @@ module.exports.addIncome = async (req, res) => {
 };
 
 module.exports.getIncome = async (req, res) => {
-  const income = await IncomeModel.findById(req.params.id);
+  const income = await IncomeModel.find({user: req.params.userId});
 
   res.status(200).json(income);
 };

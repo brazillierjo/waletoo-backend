@@ -4,7 +4,7 @@ const expensesController = require("../controllers/expenses.controller");
 
 // INCOMES ROUTES
 router.post("/add", expensesController.addExpense);
-router.get("/get/:id", expensesController.getExpense);
+router.get("/get/:userId", expensesController.getExpense);
 router.put("/update/:id", expensesController.updateExpense);
 router.delete("/delete/:id", expensesController.deleteExpense);
 
