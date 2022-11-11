@@ -54,7 +54,7 @@ module.exports.signIn = async (req, res) => {
 
 module.exports.getUser = async (req, res) => {
   const { userId } = req.params;
-  const user = await UserModel.findById(userId);
+  const user = await UserModel.findById(userId).select("-password");
 
   if (!user) {
     return res.status(400).json({
