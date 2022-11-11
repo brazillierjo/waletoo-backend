@@ -51,3 +51,19 @@ module.exports.signIn = async (req, res) => {
     token
   });
 };
+
+module.exports.getUser = async (req, res) => {
+  const { userId } = req.params;
+  const user = await UserModel.findById(userId);
+
+  if (!user) {
+    return res.status(400).json({
+      message: "User not found."
+    });
+  }
+
+  res.status(200).json({
+    message: "User found.",
+    user
+  });
+};
