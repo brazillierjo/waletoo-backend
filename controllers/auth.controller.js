@@ -62,8 +62,5 @@ module.exports.getUser = async (req, res) => {
     });
   }
 
-  res.status(200).json({
-    message: "User found.",
-    user
-  });
+  res.status(200).json(user);
 };
