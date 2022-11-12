@@ -27,7 +27,7 @@ module.exports.updateIncome = async (req, res) => {
     label,
     amount
   });
-
+    
   res.status(200).json({
     message: "Income updated."
   });
